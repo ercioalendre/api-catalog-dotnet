@@ -57,7 +57,7 @@ namespace APICatalog.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] UserInputDTO userInput)
+        public async Task<ActionResult> Login([FromBody] LoginInputDTO userInput)
         {
             var result = await _signInManager.PasswordSignInAsync(
                 userInput.Email,
@@ -76,7 +76,7 @@ namespace APICatalog.Controllers
             return Ok(GenerateToken(userInput, "User logged in successfully!"));
         }
 
-        private ActionResult<LoginOutputDTO> GenerateToken(UserInputDTO userInput, string message)
+        private ActionResult<LoginOutputDTO> GenerateToken(LoginInputDTO userInput, string message)
         {
             if (userInput.Email == null)
             {
